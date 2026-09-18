@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Код Калмыкии: расшифруй историю</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #0057B7;
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .slide {
+      min-height: 100vh;
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1.5rem 6rem;
+      position: relative;
+      border-bottom: 4px solid #D62D20;
+    }
+
+    .slide.visible {
+      display: flex;
+      animation: slideUp 0.7s ease forwards;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2, h3 {
+      color: #FFD700;
+      text-shadow: 2px 2px 0 #D62D20;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem); text-align: center; }
+    h2 {
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      border-left: 6px solid #D62D20;
+      padding-left: 1rem;
+      margin-top: 1rem;
+      align-self: flex-start;
+      width: 100%;
+      max-width: 950px;
+    }
+    h3 { font-size: clamp(1.3rem, 4vw, 1.8rem); }
+
+    p, li, label, span { color: #ffffff; font-size: clamp(1rem, 2.5vw, 1.15rem); }
+
+    .btn {
+      background-color: #FFD700;
+      color: #0057B7;
+      font-weight: 700;
+      border: 3px solid #D62D20;
+      border-radius: 50px;
+      padding: 0.8rem 2.2rem;
+      font-size: 1.2rem;
+      margin: 1.2rem 0.5rem;
+      box-shadow: 0 6px 0 #D62D20;
+      letter-spacing: 1px;
+      transition: all 0.15s ease;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn:hover { background-color: #ffe066; transform: translateY(-2px); box-shadow: 0 8px 0 #D62D20; }
+    .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #D62D20; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: 0 3px 0 #D62D20; }
+
+    .btn-small {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      box-shadow: 0 4px 0 #D62D20;
+      margin: 0;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 1.8rem;
+      margin: 1rem 0;
+      border: 3px solid #FFD700;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .history-fact {
+      background-color: #D62D20;
+      border-radius: 20px;
+      padding: 1rem 1.5rem;
+      margin-top: 1rem;
+      border-left: 8px solid #FFD700;
+      animation: fadeIn 0.5s ease;
+    }
+    .history-fact strong { color: #FFD700; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1100px;
+    }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    .converter-input {
+      background: #ffffff;
+      border: 3px solid #D62D20;
+      border-radius: 20px;
+      padding: 0.8rem 1.2rem;
+      font-size: 1.3rem;
+      color: #0057B7;
+      font-weight: 600;
+      width: 100%;
+      outline: none;
+      margin-top: 0.3rem;
+    }
+    .converter-input:focus { border-color: #FFD700; box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.4); }
+
+    .power-table {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      border: 2px dashed #FFD700;
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .power-table span { display: inline-block; margin: 0.2rem 0.5rem; font-weight: 600; color: #FFD700; }
+
+    /* ---------- Этапы занятия ---------- */
+    .stage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+    .stage-item {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1rem 1.3rem;
+      border-left: 6px solid #FFD700;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .stage-item .stage-name {
+      font-weight: 700;
+      color: #FFD700;
+      min-width: 200px;
+      font-size: 1.05rem;
+    }
+    .stage-item .stage-time {
+      background: #D62D20;
+      color: #ffffff;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .stage-item .stage-actions {
+      flex: 1;
+      font-size: 0.95rem;
+    }
+    .stage-item .stage-artifact {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #FFD700;
+      font-style: italic;
+    }
+
+    /* ---------- Материалы ---------- */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+    @media (min-width: 768px) { .materials-grid { grid-template-columns: 1fr 1fr; } }
+    .material-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.2rem;
+      border: 2px solid #FFD700;
+    }
+    .material-card h4 {
+      color: #FFD700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .material-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+    .material-card .tag {
+      display: inline-block;
+      background: #D62D20;
+      color: #ffffff;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+
+    /* ---------- Test items ---------- */
+    .test-item {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 1.5rem;
+      margin-bottom: 1.6rem;
+      border: 2px solid #FFD700;
+      transition: all 0.3s ease;
+    }
+    .test-item.correct {
+      border-color: #2ecc71;
+      background: rgba(46, 204, 113, 0.12);
+      box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.25);
+    }
+    .test-item.failed {
+      border-color: #D62D20;
+      background: rgba(214, 45, 32, 0.18);
+    }
+    .test-item.correct .checkmark { display: inline-block; }
+    .checkmark { display: none; color: #2ecc71; font-size: 1.8rem; margin-left: 0.6rem; vertical-align: middle; }
+
+    .test-question {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+
+    .test-input {
+      background: #ffffff;
+      border: 2px solid #D62D20;
+      border-radius: 16px;
+      padding: 0.7rem 1rem;
+      font-size: 1.1rem;
+      color: #0057B7;
+      width: 180px;
+      margin-right: 0.8rem;
+      margin-top: 0.5rem;
+      outline: none;
+      font-weight: 600;
+    }
+    .test-input:focus { border-color: #FFD700; }
+    .test-input:disabled { background: #e0e0e0; color: #777; }
+
+    .error-hint {
+      color: #FFD700;
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      font-weight: 500;
+      display: block;
+    }
+
+    .attempts-indicator {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #FFD700;
+      background: rgba(214, 45, 32, 0.5);
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-left: 0.6rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+
+    .task-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .badge-train { background: #FFD700; color: #0057B7; }
+    .badge-hist  { background: #D62D20; color: #ffffff; border: 1px solid #FFD700; }
+
+    /* ---------- Explanation block ---------- */
+    .explanation {
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 6px solid #2ecc71;
+      border-radius: 0 16px 16px 0;
+      padding: 1rem 1.3rem;
+      margin-top: 1rem;
+      animation: fadeIn 0.5s ease;
+    }
+    .explanation.failed-expl { border-left-color: #D62D20; }
+    .explanation h4 {
+      color: #2ecc71;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .explanation.failed-expl h4 { color: #D62D20; }
+    .explanation .solution {
+      font-family: 'Courier New', monospace;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      margin: 0.6rem 0;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #FFD700;
+      overflow-x: auto;
+    }
+    .explanation .fact {
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: rgba(214, 45, 32, 0.35);
+      border-radius: 12px;
+      border-left: 4px solid #FFD700;
+      font-size: 1rem;
+    }
+    .explanation .fact strong { color: #FFD700; }
+
+    /* ---------- Variant toggle ---------- */
+    .variant-toggle { display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .variant-btn {
+      background: transparent;
+      color: #ffffff;
+      border: 3px solid #FFD700;
+      border-radius: 40px;
+      padding: 0.6rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .variant-btn.active { background: #FFD700; color: #0057B7; border-color: #D62D20; box-shadow: 0 4px 0 #D62D20; }
+
+    /* ---------- Quiz ---------- */
+    .quiz-question {
+      margin-bottom: 2rem;
+      padding: 1.3rem;
+      border-left: 6px solid #D62D20;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0 20px 20px 0;
+    }
+    .quiz-question.correct-answer { border-left-color: #2ecc71; background: rgba(46, 204, 113, 0.1); }
+    .quiz-question.wrong-answer   { border-left-color: #D62D20; }
+    .quiz-option {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.6rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .quiz-option input[type="radio"] { margin-right: 0.8rem; accent-color: #D62D20; transform: scale(1.2); }
+    .quiz-option.selected { border-color: #FFD700; background: rgba(255, 215, 0, 0.15); }
+    .quiz-option.disabled-option { opacity: 0.7; cursor: not-allowed; }
+    .quiz-explanation {
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      display: none;
+    }
+    .quiz-explanation.show { display: block; animation: fadeIn 0.5s ease; }
+    .quiz-explanation.right { background: rgba(46, 204, 113, 0.25); border-left: 4px solid #2ecc71; }
+    .quiz-explanation.wrong { background: rgba(214, 45, 32, 0.25); border-left: 4px solid #D62D20; }
+
+    /* ---------- Result screen ---------- */
+    .result-percent {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #FFD700;
+      text-shadow: 4px 4px 0 #D62D20;
+      margin: 1rem 0;
+    }
+
+    /* ---------- Navigation dots ---------- */
+    .nav-dots {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+      background: rgba(0, 87, 183, 0.75);
+      padding: 10px 16px;
+      border-radius: 40px;
+      backdrop-filter: blur(5px);
+      border: 2px solid #FFD700;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 95vw;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #D62D20;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .dot.active { background: #FFD700; transform: scale(1.3); border-color: #D62D20; }
+
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 1.5rem; }
+    .algorithm-step {
+      background: rgba(255, 215, 0, 0.15);
+      border-left: 4px solid #FFD700;
+      padding: 0.5rem 1rem;
+      margin: 0.4rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+    .division-step {
+      font-family: 'Courier New', monospace;
+      font-size: 1.05rem;
+      background: rgba(255,255,255,0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      margin: 0.2rem 0;
+      display: inline-block;
+    }
+
+    /* Проблема и продукт */
+    .problem-box {
+      background: rgba(214, 45, 32, 0.35);
+      border-left: 6px solid #FFD700;
+      border-radius: 0 18px 18px 0;
+      padding: 1rem 1.4rem;
+      margin: 1.2rem 0;
+      text-align: left;
+    }
+    .problem-box p { margin-bottom: 0.5rem; }
+    .problem-box .label {
+      display: inline-block;
+      background: #FFD700;
+      color: #0057B7;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.15rem 0.7rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .product-box {
+      background: rgba(46, 204, 113, 0.18);
+      border-left: 6px solid #2ecc71;
+      border-radius: 0 18px 18px 0;
+      padding: 1rem 1.4rem;
+      margin: 1.2rem 0;
+      text-align: left;
+    }
+    .product-box .label {
+      display: inline-block;
+      background: #2ecc71;
+      color: #0057B7;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.15rem 0.7rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Рабочий лист */
+    .worksheet-block {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #FFD700;
+    }
+    .worksheet-block h4 {
+      color: #FFD700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .worksheet-block ol {
+      margin-left: 1.4rem;
+      margin-top: 0.4rem;
+    }
+    .worksheet-block ol li {
+      margin-bottom: 0.4rem;
+      font-size: 0.98rem;
+    }
+
+    /* ---------- КИМы ---------- */
+    .kim-section {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.4rem;
+      border-left: 6px solid #FFD700;
+    }
+    .kim-section h3 {
+      color: #FFD700;
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+      margin-top: 0;
+    }
+    .kim-question {
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 12px;
+    }
+    .kim-question .q-text {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .kim-option {
+      display: block;
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .kim-option:hover { background: rgba(255, 215, 0, 0.12); }
+    .kim-option input[type="radio"] { margin-right: 0.6rem; accent-color: #D62D20; }
+
+    .kim-key {
+      margin-top: 0.6rem;
+      padding: 0.6rem 0.9rem;
+      background: rgba(46, 204, 113, 0.15);
+      border-left: 4px solid #2ecc71;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .kim-key.show { display: block; animation: fadeIn 0.4s ease; }
+    .kim-key strong { color: #2ecc71; }
+
+    /* ---------- Практические кейсы ---------- */
+    .cases-block {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 3px dashed #FFD700;
+    }
+    .cases-block h3 {
+      color: #FFD700;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      margin-top: 0;
+    }
+    .case-card {
+      background: rgba(214, 45, 32, 0.18);
+      border: 2px dashed #FFD700;
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .case-card .case-title {
+      font-weight: 700;
+      color: #FFD700;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .case-card .case-body {
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      margin: 0.5rem 0;
+    }
+    .case-card .case-task {
+      font-size: 0.95rem;
+      margin-top: 0.4rem;
+    }
+    .case-input-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .case-input-row label {
+      font-size: 0.95rem;
+      color: #FFD700;
+      font-weight: 600;
+      min-width: 110px;
+      padding-top: 0.6rem;
+    }
+    .case-textarea {
+      flex: 1;
+      min-width: 200px;
+      background: #ffffff;
+      border: 2px solid #D62D20;
+      border-radius: 14px;
+      padding: 0.7rem 1rem;
+      font-size: 0.98rem;
+      color: #0057B7;
+      font-weight: 500;
+      outline: none;
+      font-family: inherit;
+      min-height: 90px;
+      resize: vertical;
+    }
+    .case-textarea:focus {
+      border-color: #FFD700;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.35);
+    }
+    .case-input {
+      flex: 1;
+      min-width: 160px;
+      background: #ffffff;
+      border: 2px solid #D62D20;
+      border-radius: 14px;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      color: #0057B7;
+      font-weight: 600;
+      outline: none;
+      font-family: inherit;
+    }
+    .case-input:focus {
+      border-color: #FFD700;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.35);
+    }
+    .case-input:disabled, .case-textarea:disabled { background: #e0e0e0; color: #555; }
+    .case-btn {
+      background: #FFD700;
+      color: #0057B7;
+      border: 2px solid #D62D20;
+      border-radius: 30px;
+      padding: 0.5rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #D62D20;
+      transition: all 0.15s;
+    }
+    .case-btn:hover { background: #ffe066; transform: translateY(-1px); box-shadow: 0 4px 0 #D62D20; }
+    .case-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #D62D20; }
+    .case-feedback {
+      margin-top: 0.7rem;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: none;
+    }
+    .case-feedback.show { display: block; animation: fadeIn 0.4s ease; }
+    .case-feedback.ok {
+      background: rgba(46, 204, 113, 0.25);
+      border-left: 4px solid #2ecc71;
+      color: #ffffff;
+    }
+    .case-feedback.err {
+      background: rgba(214, 45, 32, 0.3);
+      border-left: 4px solid #D62D20;
+      color: #FFD700;
+    }
+    .case-toggle {
+      background: #FFD700;
+      color: #0057B7;
+      border: 2px solid #D62D20;
+      border-radius: 30px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      transition: all 0.15s;
+    }
+    .case-toggle:hover { background: #ffe066; }
+    .case-answer {
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      background: rgba(46, 204, 113, 0.15);
+      border-left: 4px solid #2ecc71;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.92rem;
+      display: none;
+    }
+    .case-answer.show { display: block; animation: fadeIn 0.4s ease; }
+    .case-answer strong { color: #2ecc71; }
+    .case-answer .fix {
+      display: block;
+      margin-top: 0.4rem;
+      font-family: 'Courier New', monospace;
+      color: #FFD700;
+    }
+
+    /* ---------- Описание занятия ---------- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+    @media (min-width: 768px) { .info-grid { grid-template-columns: 1fr 1fr; } }
+    .info-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      border-left: 6px solid #FFD700;
+    }
+    .info-card h4 {
+      color: #FFD700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .info-card p, .info-card li {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    .info-card ul { margin-left: 1.2rem; margin-top: 0.4rem; }
+
+    /* ---------- Чек-лист ---------- */
+    .checklist {
+      width: 100%;
+      max-width: 900px;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.8rem 1.1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      margin-bottom: 0.6rem;
+      border-left: 5px solid #FFD700;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .checklist-item:hover { background: rgba(255, 255, 255, 0.14); }
+    .checklist-item.done {
+      background: rgba(46, 204, 113, 0.15);
+      border-left-color: #2ecc71;
+    }
+    .checklist-item input[type="checkbox"] {
+      transform: scale(1.4);
+      accent-color: #2ecc71;
+      margin-top: 0.2rem;
+      cursor: pointer;
+    }
+    .checklist-item .item-text {
+      flex: 1;
+      font-size: 1rem;
+    }
+    .checklist-item.done .item-text {
+      text-decoration: line-through;
+      opacity: 0.85;
+    }
+    .checklist-progress {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      height: 24px;
+      width: 100%;
+      max-width: 500px;
+      margin: 1rem auto 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .checklist-progress-bar {
+      background: #2ecc71;
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .checklist-progress-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* ---------- Материалы для повторения ---------- */
+    .revision-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+    }
+    @media (min-width: 768px) { .revision-grid { grid-template-columns: 1fr 1fr; } }
+    .revision-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      border: 2px solid #FFD700;
+    }
+    .revision-card h4 {
+      color: #FFD700;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+    }
+    .revision-card .formula {
+      font-family: 'Courier New', monospace;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      margin: 0.4rem 0;
+      color: #FFD700;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+    .revision-card ul { margin-left: 1.2rem; margin-top: 0.4rem; }
+    .revision-card li { font-size: 0.93rem; margin-bottom: 0.25rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ================= SLIDE 1: TITLE + ПРОБЛЕМА + ПРОДУКТ ================= -->
+  <section id="slide1" class="slide visible">
+    <div class="card" style="max-width: 850px;">
+      <h1 style="text-align:center;">Код Калмыкии:<br>расшифруй историю</h1>
+      <p class="text-center" style="font-size: 1.3rem; color: #FFD700; margin: 0.5rem 0;">
+        Интегрированный урок информатики и краеведения · 8 класс · 45 минут
+      </p>
+
+      <div class="problem-box">
+        <span class="label">ПРОБЛЕМА</span>
+        <p>Числа — это просто числа. История — это просто даты. Связь между ними не видна: ученик не умеет читать двоичный код и не чувствует себя тем, кто может открыть историю Калмыкии.</p>
+        <p style="font-size:0.95rem; font-style:italic;">Проблема не решается «в одно действие»: нужен цифровой инструмент, где каждое число — исторический факт, а каждый перевод — шаг к его раскрытию.</p>
+      </div>
+
+      <div class="product-box">
+        <span class="label">ПРОДУКТ</span>
+        <p><strong>Цифровой след прохождения лендинга</strong> — это не реферат и не презентация, а работающий интерактивный продукт на реальных исторических данных:</p>
+        <ul style="margin-left: 1.2rem; margin-top: 0.4rem; font-size: 0.95rem;">
+          <li>заполненный конвертер (десятичное ↔ двоичное);</li>
+          <li>решённые (или разобранные после 3 попыток) задания по переводу чисел;</li>
+          <li>результаты теста по историческим фактам;</li>
+          <li>итоговый процент выполнения с мотивирующим сообщением.</li>
+        </ul>
+      </div>
+
+      <div class="text-center">
+        <button class="btn" onclick="goToSlide(2)">Начать путешествие</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 2: ОПИСАНИЕ ЗАНЯТИЯ ================= -->
+  <section id="slide2" class="slide">
+    <h2>Описание занятия</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Что это за занятие, для кого, чему посвящено и что будет результатом.
+    </p>
+    <div class="card" style="max-width: 1000px;">
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>📌 Название и тема</h4>
+          <p><strong>«Код Калмыкии: расшифруй историю»</strong></p>
+          <p>Интегрированное занятие по информатике и истории Калмыкии. Тема: «Системы счисления. Перевод из двоичной системы в десятичную и обратно».</p>
+        </div>
+        <div class="info-card">
+          <h4>🎯 Для кого</h4>
+          <p>8 класс (13–14 лет).</p>
+          <p><strong>Ведущий предмет:</strong> информатика.</p>
+          <p><strong>Предметы-партнёры:</strong> история Калмыкии, математика, краеведение.</p>
+        </div>
+        <div class="info-card">
+          <h4>🎓 Цель занятия</h4>
+          <p>Ученики проходят интерактивный лендинг «Код Калмыкии», подбирая ключи к двоичным кодам, и обосновывают, что каждый полученный результат — реальный исторический факт Республики Калмыкия.</p>
+        </div>
+        <div class="info-card">
+          <h4>🧩 Задачи</h4>
+          <ul>
+            <li>Освоить алгоритмы перевода из двоичной в десятичную и обратно.</li>
+            <li>Применить алгоритмы к историческим датам и фактам Калмыкии.</li>
+            <li>Пройти тест по вариантам (3 попытки на задание).</li>
+            <li>Пройти тест по фактам и решить практические кейсы.</li>
+            <li>Сформулировать вывод о связи информатики и истории.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>📦 Предмет результата</h4>
+          <p><strong>Цифровой след прохождения лендинга:</strong> заполненный конвертер, решённые (или разобранные) задания, результаты теста по фактам, итоговый процент.</p>
+          <p>Продукт можно показать учителю, одноклассникам, родителям.</p>
+        </div>
+        <div class="info-card">
+          <h4>⏱ Формат</h4>
+          <p>1 занятие × 45 минут.</p>
+          <p><strong>Место:</strong> кабинет информатики (компьютерный класс с ноутбуками).</p>
+          <p><strong>Оборудование:</strong> компьютер, проектор, ноутбуки, лендинг, таблица степеней двойки.</p>
+        </div>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(3)">Перейти к рабочему листу</button>
+  </section>
+
+  <!-- ================= SLIDE 3: РАБОЧИЙ ЛИСТ УЧЕНИКА ================= -->
+  <section id="slide3" class="slide">
+    <h2>Рабочий лист ученика</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      «Цифровой архив Калмыкии: маршрутный лист» — заполняется по ходу занятия.
+    </p>
+    <div class="card" style="max-width: 950px;">
+      <div class="worksheet-block">
+        <h4>Блок 1. Теория</h4>
+        <p>Запишите в тетрадь два алгоритма перевода:</p>
+        <ol>
+          <li>Из двоичной в десятичную: разряды справа налево → степени двойки → сложение.</li>
+          <li>Из десятичной в двоичную: деление на 2 → запись остатков → чтение снизу вверх.</li>
+        </ol>
+      </div>
+      <div class="worksheet-block">
+        <h4>Блок 2. Конвертер</h4>
+        <p>Переведите 5–6 чисел в лендинге (слайд «Конвертер»). Запишите в тетрадь 2–3 примера с решением.</p>
+      </div>
+      <div class="worksheet-block">
+        <h4>Блок 3. Тест по вариантам</h4>
+        <p>Пройдите тест своего варианта (8 заданий, до 3 попыток на каждое).</p>
+        <ol>
+          <li>Тренировочные задания (без истории) — 4 шт.</li>
+          <li>Исторические задания (с фактом) — 4 шт.</li>
+        </ol>
+      </div>
+      <div class="worksheet-block">
+        <h4>Блок 4. Тест по фактам</h4>
+        <p>Ответьте на 4 вопроса о фактах, которые встретились в тесте.</p>
+      </div>
+      <div class="worksheet-block">
+        <h4>Блок 5. Рефлексия</h4>
+        <p>Запишите вывод: как знания по информатике помогают изучать историю Калмыкии?</p>
+      </div>
+      <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,215,0,0.12); border-radius: 16px; border-left: 5px solid #FFD700;">
+        <p style="font-size:0.95rem;"><strong>📌 Как пользоваться:</strong> лист печатается на каждого ученика или на команду. Заполняется параллельно с прохождением лендинга.</p>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(4)">Перейти к этапам занятия</button>
+  </section>
+
+  <!-- ================= SLIDE 4: ЭТАПЫ ЗАНЯТИЯ ================= -->
+  <section id="slide4" class="slide">
+    <h2>Этапы занятия</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Занятие построено как 5 спринтов. Каждый спринт начинается с задачи и заканчивается готовым артефактом.
+    </p>
+    <div class="card" style="max-width: 950px;">
+      <div class="stage-list">
+        <div class="stage-item">
+          <span class="stage-name">Этап 1. Погружение в миссию</span>
+          <span class="stage-time">2 мин</span>
+          <div class="stage-actions">
+            Формулируют тему и цель: «расшифровать историю Калмыкии через двоичный код».
+            <span class="stage-artifact">Артефакт: записанная тема и цель в тетради.</span>
+          </div>
+        </div>
+        <div class="stage-item">
+          <span class="stage-name">Этап 2. Актуализация</span>
+          <span class="stage-time">5 мин</span>
+          <div class="stage-actions">
+            Отвечают на фронтальные вопросы о десятичной системе; слушают связь с историей Калмыкии.
+            <span class="stage-artifact">Артефакт: устные ответы; краткий конспект.</span>
+          </div>
+        </div>
+        <div class="stage-item">
+          <span class="stage-name">Этап 3. Теория: два алгоритма</span>
+          <span class="stage-time">20 мин</span>
+          <div class="stage-actions">
+            Записывают алгоритмы перевода; разбирают примеры; расшифровывают 11011101011₂ = 1771; шифруют 1927 → 11110000111₂.
+            <span class="stage-artifact">Артефакт: конспект с двумя алгоритмами и решёнными примерами.</span>
+          </div>
+        </div>
+        <div class="stage-item">
+          <span class="stage-name">Этап 4. Работа с лендингом</span>
+          <span class="stage-time">12 мин</span>
+          <div class="stage-actions">
+            Тренируются в конвертере; проходят тест по вариантам (8 заданий, 3 попытки); решают практические кейсы; получают решения и исторические факты.
+            <span class="stage-artifact">Артефакт: заполненный конвертер; решённые задания и кейсы; разобранные решения.</span>
+          </div>
+        </div>
+        <div class="stage-item">
+          <span class="stage-name">Этап 5. Тест по фактам и результат</span>
+          <span class="stage-time">4 мин</span>
+          <div class="stage-actions">
+            Проходят тест по историческим фактам (4 вопроса); получают итоговый процент; обсуждают связь информатики и истории.
+            <span class="stage-artifact">Артефакт: итоговый процент; вывод о связи информатики и истории.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(5)">Перейти к чек-листу</button>
+  </section>
+
+  <!-- ================= SLIDE 5: ЧЕК-ЛИСТ ================= -->
+  <section id="slide5" class="slide">
+    <h2>Чек-лист занятия</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Отмечай пункты по мере выполнения. Прогресс сохраняется автоматически.
+    </p>
+    <div class="card" style="max-width: 900px;">
+      <div class="checklist" id="checklistContainer">
+        <!-- динамически -->
+      </div>
+      <div class="checklist-progress">
+        <div class="checklist-progress-bar" id="checklistBar"></div>
+        <div class="checklist-progress-text" id="checklistText">0%</div>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(6)">Перейти к теории</button>
+  </section>
+
+  <!-- ================= SLIDE 6: ТЕОРИЯ ================= -->
+  <section id="slide6" class="slide">
+    <h2>Теория и примеры</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Из двоичной в десятичную</h3>
+        <p style="margin-bottom: 0.6rem;"><strong>Алгоритм перевода:</strong></p>
+        <div class="algorithm-step"><strong>1.</strong> Записать разряды числа справа налево, начиная с нулевого.</div>
+        <div class="algorithm-step"><strong>2.</strong> Умножить каждую цифру на 2 в степени номера разряда.</div>
+        <div class="algorithm-step"><strong>3.</strong> Сложить полученные результаты.</div>
+        <p style="margin-top: 1rem;"><strong>Пример:</strong></p>
+        <div class="division-step">1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11₁₀</div>
+        <div class="history-fact">
+          <strong>Историческая справка:</strong> Число 1771 в двоичной системе — <strong>11011101011₂</strong>.
+          Это год трагического исхода части калмыцкого народа в Джунгарию — событие, изменившее демографию и историю региона.
+        </div>
+      </div>
+      <div class="card">
+        <h3>Из десятичной в двоичную (метод деления)</h3>
+        <p style="margin-bottom: 0.6rem;"><strong>Алгоритм перевода:</strong></p>
+        <div class="algorithm-step"><strong>1.</strong> Делить число на 2.</div>
+        <div class="algorithm-step"><strong>2.</strong> Записывать остатки от деления.</div>
+        <div class="algorithm-step"><strong>3.</strong> Продолжать до тех пор, пока частное не станет равно 0.</div>
+        <div class="algorithm-step"><strong>4.</strong> Записать остатки в обратном порядке.</div>
+        <p style="margin-top: 1rem;"><strong>Пример:</strong> 25₁₀ → ?₂</p>
+        <div class="division-step">25 ÷ 2 = 12 (ост. 1)</div><br>
+        <div class="division-step">12 ÷ 2 = 6 (ост. 0)</div><br>
+        <div class="division-step">6 ÷ 2 = 3 (ост. 0)</div><br>
+        <div class="division-step">3 ÷ 2 = 1 (ост. 1)</div><br>
+        <div class="division-step">1 ÷ 2 = 0 (ост. 1)</div>
+        <p style="margin-top: 0.6rem;">Ответ: <strong>11001₂</strong></p>
+        <div class="history-fact">
+          <strong>Историческая справка:</strong> Год основания города Элиста — 1865.
+          В двоичной системе: <strong>11101001001₂</strong>.
+        </div>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(7)">Перейти к конвертеру</button>
+  </section>
+
+  <!-- ================= SLIDE 7: CONVERTER ================= -->
+  <section id="slide7" class="slide">
+    <h2>Интерактивный конвертер</h2>
+    <div class="card" style="max-width: 700px;">
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <label for="decimalInput">Десятичное число (0–2047):</label>
+          <input type="number" id="decimalInput" class="converter-input" placeholder="Например, 25" min="0" max="2047" step="1">
+        </div>
+        <div>
+          <label for="binaryInput">Двоичное число (только 0 и 1):</label>
+          <input type="text" id="binaryInput" class="converter-input" placeholder="Например, 11001" inputmode="numeric">
+        </div>
+      </div>
+      <div class="power-table">
+        <p style="color: #FFD700; font-weight: 700; margin-bottom: 0.5rem;">Таблица степеней двойки:</p>
+        <span>2⁰=1</span> <span>2¹=2</span> <span>2²=4</span> <span>2³=8</span> <span>2⁴=16</span>
+        <span>2⁵=32</span> <span>2⁶=64</span> <span>2⁷=128</span> <span>2⁸=256</span> <span>2⁹=512</span> <span>2¹⁰=1024</span>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(8)">Перейти к тестированию</button>
+  </section>
+
+  <!-- ================= SLIDE 8: TESTS + ПРАКТИЧЕСКИЕ КЕЙСЫ ================= -->
+  <section id="slide8" class="slide">
+    <h2>Тестирование по вариантам</h2>
+    <p style="margin-bottom: 1rem; text-align: center; max-width: 850px;">
+      В каждом варианте: <span class="task-badge badge-train">тренировочные</span> и
+      <span class="task-badge badge-hist">исторические</span> задания.
+      На каждое задание даётся <strong>3 попытки</strong>. После правильного ответа появится полное решение и исторический факт.
+    </p>
+    <div class="variant-toggle">
+      <button id="variant1Btn" class="variant-btn active" onclick="setVariant(1)">Вариант 1</button>
+      <button id="variant2Btn" class="variant-btn" onclick="setVariant(2)">Вариант 2</button>
+    </div>
+    <div id="testContainer" class="card" style="max-width: 900px;"></div>
+
+    <div class="card" style="max-width: 900px;">
+      <div class="cases-block">
+        <h3>🔍 Практические кейсы</h3>
+        <p style="margin-bottom:1rem;">Два задания на проверку понимания алгоритмов. Впишите ответ и нажмите «Проверить».</p>
+
+        <div class="case-card">
+          <div class="case-title">Кейс 1. Запишите алгоритм перевода из двоичной системы в десятичную</div>
+          <div class="case-task">Перечислите 3 шага алгоритма (можно через запятую или с новой строки).</div>
+          <div class="case-input-row">
+            <label for="case1_input">Ваш ответ:</label>
+            <textarea id="case1_input" class="case-textarea" placeholder="1) ...&#10;2) ...&#10;3) ..."></textarea>
+          </div>
+          <div style="margin-top:0.6rem;">
+            <button class="case-btn" onclick="checkCase(1)">Проверить</button>
+          </div>
+          <div class="case-feedback" id="case1_feedback"></div>
+          <button class="case-toggle" onclick="toggleCase('case1')">Показать правильный ответ</button>
+          <div class="case-answer" id="case1">
+            <strong>Правильный ответ:</strong> алгоритм состоит из трёх шагов.
+            <span class="fix">1) Записать разряды числа справа налево, начиная с нулевого.<br>
+            2) Умножить каждую цифру на 2 в степени номера разряда.<br>
+            3) Сложить полученные результаты.</span>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-title">Кейс 2. Неверный порядок чтения остатков</div>
+          <div class="case-body">
+25 ÷ 2 = 12 (ост. 1)<br>
+12 ÷ 2 = 6 (ост. 0)<br>
+6 ÷ 2 = 3 (ост. 0)<br>
+3 ÷ 2 = 1 (ост. 1)<br>
+1 ÷ 2 = 0 (ост. 1)<br>
+Ответ: 10011₂
+          </div>
+          <div class="case-task">Задание: запишите правильное двоичное представление числа 25₁₀.</div>
+          <div class="case-input-row">
+            <label for="case2_input">Ваш ответ:</label>
+            <input type="text" id="case2_input" class="case-input" placeholder="Введите двоичное число">
+          </div>
+          <div style="margin-top:0.6rem;">
+            <button class="case-btn" onclick="checkCase(2)">Проверить</button>
+          </div>
+          <div class="case-feedback" id="case2_feedback"></div>
+          <button class="case-toggle" onclick="toggleCase('case2')">Показать правильный ответ</button>
+          <div class="case-answer" id="case2">
+            <strong>Ошибка:</strong> остатки прочитаны не снизу вверх. Правильный порядок: 1, 1, 0, 0, 1.
+            <span class="fix">Правильно: 25₁₀ = 11001₂</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn mt-2" onclick="goToSlide(9)">Перейти к тесту по фактам</button>
+  </section>
+
+  <!-- ================= SLIDE 9: QUIZ ================= -->
+  <section id="slide9" class="slide">
+    <h2>Тест по новым фактам</h2>
+    <p style="margin-bottom: 1rem; text-align: center;">Выберите один правильный ответ. После проверки появится пояснение.</p>
+    <div class="card" style="max-width: 850px;">
+      <div id="quizContainer"></div>
+      <button class="btn mt-2" onclick="checkQuizAndGoToResults()">Завершить и перейти к проверке знаний</button>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 10: КИМы (3 вопроса) ================= -->
+  <section id="slide10" class="slide">
+    <h2>Проверка знаний (КИМы)</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Тест на предметное знание по теме «Системы счисления»: 2 вопроса с выбором ответа и 1 открытый.
+    </p>
+
+    <div class="card" style="max-width: 950px;">
+      <div class="kim-section">
+        <h3>📋 10.1. Тест на предметное знание</h3>
+
+        <div class="kim-question">
+          <div class="q-text">1. Какая система счисления использует только цифры 0 и 1?</div>
+          <label class="kim-option"><input type="radio" name="kim_q1" value="a"> а) десятичная</label>
+          <label class="kim-option"><input type="radio" name="kim_q1" value="b"> б) двоичная</label>
+          <label class="kim-option"><input type="radio" name="kim_q1" value="c"> в) восьмеричная</label>
+          <div class="kim-key" id="kim_key1"><strong>Ключ:</strong> б) двоичная.</div>
+        </div>
+
+        <div class="kim-question">
+          <div class="q-text">2. Чему равно двоичное число 1011₂ в десятичной системе?</div>
+          <label class="kim-option"><input type="radio" name="kim_q2" value="a"> а) 9</label>
+          <label class="kim-option"><input type="radio" name="kim_q2" value="b"> б) 10</label>
+          <label class="kim-option"><input type="radio" name="kim_q2" value="c"> в) 11</label>
+          <div class="kim-key" id="kim_key2"><strong>Ключ:</strong> в) 11. Решение: 1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11₁₀.</div>
+        </div>
+
+        <div class="kim-question">
+          <div class="q-text">3. Опишите в 1–2 предложениях, почему понимание систем счисления важно для сохранения исторической памяти Калмыкии.</div>
+          <textarea id="kim_open3" placeholder="Введите ответ (1–2 предложения)..." style="width:100%; min-height:80px; border:2px solid #FFD700; border-radius:12px; background:rgba(255,255,255,0.1); color:#fff; padding:0.6rem 1rem; font-size:0.95rem; font-family:inherit; outline:none;"></textarea>
+          <div class="kim-key" id="kim_key3"><strong>Ключ (примерный ответ):</strong> Понимание систем счисления позволяет оцифровывать и расшифровывать исторические документы, даты и факты. Это помогает сохранять и передавать историческую память Калмыкии без искажений.</div>
+        </div>
+
+        <div class="text-center" style="margin-top:1rem;">
+          <button class="btn btn-small" onclick="checkKimAnswers()">Показать ключи</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn mt-2" onclick="goToSlide(11)">Перейти к материалам для повторения</button>
+  </section>
+
+  <!-- ================= SLIDE 11: МАТЕРИАЛЫ ДЛЯ ПОВТОРЕНИЯ ================= -->
+  <section id="slide11" class="slide">
+    <h2>Материалы для повторения</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Шпаргалка по теме: алгоритмы, таблица степеней, ключевые исторические факты.
+    </p>
+    <div class="card" style="max-width: 1000px;">
+      <div class="revision-grid">
+        <div class="revision-card">
+          <h4>🔢 Перевод из двоичной в десятичную</h4>
+          <div class="formula">1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰<br>= 8 + 0 + 2 + 1 = 11₁₀</div>
+          <p style="font-size:0.93rem;"><strong>Шаги:</strong> разряды справа налево → степени двойки → сложение.</p>
+        </div>
+        <div class="revision-card">
+          <h4>🔢 Перевод из десятичной в двоичную</h4>
+          <div class="formula">25 ÷ 2 = 12 (ост. 1)<br>12 ÷ 2 = 6 (ост. 0)<br>6 ÷ 2 = 3 (ост. 0)<br>3 ÷ 2 = 1 (ост. 1)<br>1 ÷ 2 = 0 (ост. 1)<br>Ответ: 11001₂</div>
+          <p style="font-size:0.93rem;"><strong>Шаги:</strong> деление на 2 → остатки → чтение снизу вверх.</p>
+        </div>
+        <div class="revision-card">
+          <h4>📊 Таблица степеней двойки</h4>
+          <ul>
+            <li>2⁰ = 1; 2¹ = 2; 2² = 4; 2³ = 8; 2⁴ = 16</li>
+            <li>2⁵ = 32; 2⁶ = 64; 2⁷ = 128</li>
+            <li>2⁸ = 256; 2⁹ = 512; 2¹⁰ = 1024</li>
+          </ul>
+        </div>
+        <div class="revision-card">
+          <h4>📜 Ключевые исторические факты</h4>
+          <ul>
+            <li><strong>1771</strong> — исход части калмыцкого народа в Джунгарию (11011101011₂).</li>
+            <li><strong>1865</strong> — год основания Элисты (11101001001₂).</li>
+            <li><strong>1927</strong> — год получения Элистой статуса города (11110000111₂).</li>
+            <li><strong>1994</strong> — принятие Конституции Калмыкии (11111001010₂).</li>
+            <li><strong>1992</strong> — переименование в Республику Калмыкия — Хальмг Тангч (11111001000₂).</li>
+            <li><strong>2026</strong> — 161 год Элисте (10100001₂).</li>
+            <li><strong>9</strong> улусов; <strong>13</strong> районов; <strong>265</strong> населённых пунктов; <strong>42</strong> место по площади; <strong>5</strong> границ.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(12)">Перейти к материалам занятия</button>
+  </section>
+
+  <!-- ================= SLIDE 12: МАТЕРИАЛЫ ================= -->
+  <section id="slide12" class="slide">
+    <h2>Материалы занятия</h2>
+    <p style="max-width: 900px; margin-bottom: 1rem; text-align:center;">
+      Всё, что нужно для проведения занятия: рабочий лист, ключи, таблица степеней, протокол рефлексии.
+    </p>
+    <div class="card" style="max-width: 950px;">
+      <div class="materials-grid">
+        <div class="material-card">
+          <h4>📄 Рабочий лист ученика</h4>
+          <p><span class="tag">печать</span> «Цифровой архив Калмыкии: маршрутный лист»</p>
+          <p style="font-size:0.9rem;">Блоки: теория → конвертер → тест по вариантам → тест по фактам → рефлексия.</p>
+          <p style="font-size:0.9rem; color:#FFD700;">Раздаётся каждому ученику или на команду.</p>
+        </div>
+        <div class="material-card">
+          <h4>🔑 Ключи и ответы</h4>
+          <p><span class="tag">для учителя</span> Все ответы к заданиям вариантов, теста по фактам, КИМов и кейсов.</p>
+          <p style="font-size:0.9rem;">Вариант 1: 1111₂=15; 1000111₂=71; 17₁₀=10001₂; 67₁₀=1000011₂; 11111001010₂=1994; 1001₂=9; 42₁₀=101010₂; 5₁₀=101₂.</p>
+          <p style="font-size:0.9rem;">Вариант 2: 10110₂=22; 1110₂=14; 53₁₀=110101₂; 12₁₀=1100₂; 10100001₂=161; 11111001000₂=1992; 13₁₀=1101₂; 265₁₀=100001001₂.</p>
+          <p style="font-size:0.9rem;">КИМы: б) двоичная; в) 11; открытый — о сохранении памяти. Кейсы: алгоритм (3 шага); 25₁₀ = 11001₂.</p>
+        </div>
+        <div class="material-card">
+          <h4>📊 Таблица степеней двойки</h4>
+          <p><span class="tag">опора</span> До 2¹⁰ включительно.</p>
+          <p style="font-size:0.9rem;">2⁰=1, 2¹=2, 2²=4, 2³=8, 2⁴=16, 2⁵=32, 2⁶=64, 2⁷=128, 2⁸=256, 2⁹=512, 2¹⁰=1024.</p>
+          <p style="font-size:0.9rem; color:#FFD700;">Встроена в лендинг (слайд «Конвертер») и выводится на доску.</p>
+        </div>
+        <div class="material-card">
+          <h4>📝 Протокол рефлексии</h4>
+          <p><span class="tag">обсуждение</span> 4 вопроса для итогового обсуждения.</p>
+          <p style="font-size:0.9rem;">1. Что нового узнали? 2. Какой алгоритм сложнее? 3. Что узнали о родном крае? 4. Как информатика помогает изучать историю?</p>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,215,0,0.12); border-radius: 16px; border-left: 5px solid #FFD700;">
+        <p style="font-size:0.95rem;"><strong>📌 Для учителя:</strong> все материалы доступны в лендинге и в паспорте методической разработки. Ключи к заданиям — в разделе 4.2 паспорта.</p>
+      </div>
+    </div>
+    <button class="btn mt-2" onclick="goToSlide(13)">Перейти к результатам</button>
+  </section>
+
+  <!-- ================= SLIDE 13: RESULTS ================= -->
+  <section id="slide13" class="slide">
+    <h2>Результаты</h2>
+    <div class="card text-center" style="max-width: 700px;">
+      <div id="resultPercent" class="result-percent">0%</div>
+      <p id="resultMessage" style="font-size: 1.5rem; margin: 1rem 0;"></p>
+      <div id="resultDetails" style="margin: 1rem 0;"></div>
+      <button class="btn" onclick="restartAll()">Пройти заново</button>
+    </div>
+  </section>
+
+  <!-- Navigation dots -->
+  <div class="nav-dots">
+    <div class="dot active" data-slide="1" onclick="goToSlide(1)"></div>
+    <div class="dot" data-slide="2" onclick="goToSlide(2)"></div>
+    <div class="dot" data-slide="3" onclick="goToSlide(3)"></div>
+    <div class="dot" data-slide="4" onclick="goToSlide(4)"></div>
+    <div class="dot" data-slide="5" onclick="goToSlide(5)"></div>
+    <div class="dot" data-slide="6" onclick="goToSlide(6)"></div>
+    <div class="dot" data-slide="7" onclick="goToSlide(7)"></div>
+    <div class="dot" data-slide="8" onclick="goToSlide(8)"></div>
+    <div class="dot" data-slide="9" onclick="goToSlide(9)"></div>
+    <div class="dot" data-slide="10" onclick="goToSlide(10)"></div>
+    <div class="dot" data-slide="11" onclick="goToSlide(11)"></div>
+    <div class="dot" data-slide="12" onclick="goToSlide(12)"></div>
+    <div class="dot" data-slide="13" onclick="goToSlide(13)"></div>
+  </div>
+
+  <script>
+    // ============================================================
+    // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+    // ============================================================
+    let currentSlide = 1;
+    let currentVariant = 1;
+    let testResults = { variant1: {}, variant2: {} };
+    let quizAnswers = {};
+    let quizChecked = false;
+    const MAX_ATTEMPTS = 3;
+    const CHECKLIST_STORAGE = 'kalmykia_checklist_';
+
+    // Список пунктов чек-листа
+    const checklistItems = [
+      { id: 'cl1', text: 'Прочитал(а) описание занятия и понял(а) цель' },
+      { id: 'cl2', text: 'Записал(а) в тетрадь два алгоритма перевода' },
+      { id: 'cl3', text: 'Потренировался(ась) в конвертере (5–6 чисел)' },
+      { id: 'cl4', text: 'Прошёл(ла) тест по варианту (8 заданий)' },
+      { id: 'cl5', text: 'Разобрал(а) решения после 3 попыток (если были ошибки)' },
+      { id: 'cl6', text: 'Решил(а) оба практических кейса' },
+      { id: 'cl7', text: 'Прошёл(ла) тест по фактам (4 вопроса)' },
+      { id: 'cl8', text: 'Ответил(а) на вопросы КИМов (3 вопроса)' },
+      { id: 'cl9', text: 'Заполнил(а) рабочий лист (5 блоков)' },
+      { id: 'cl10', text: 'Сформулировал(а) вывод о связи информатики и истории' }
+    ];
+
+    // ============================================================
+    // НАВИГАЦИЯ (13 слайдов)
+    // ============================================================
+    function goToSlide(slideNumber) {
+      try {
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('visible'));
+        const target = document.getElementById('slide' + slideNumber);
+        if (target) {
+          target.classList.add('visible');
+          currentSlide = slideNumber;
+          document.querySelectorAll('.dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx + 1 === slideNumber);
+          });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if (slideNumber === 13) {
+          updateResultsScreen();
+        }
+      } catch (e) {
+        console.error('goToSlide error:', e);
+      }
+    }
+
+    // ============================================================
+    // КОНВЕРТЕР
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+      const decimalInput = document.getElementById('decimalInput');
+      const binaryInput = document.getElementById('binaryInput');
+
+      if (decimalInput && binaryInput) {
+        decimalInput.addEventListener('input', function(e) {
+          const val = e.target.value.trim();
+          if (val === '') { binaryInput.value = ''; return; }
+          const num = parseInt(val, 10);
+          if (!isNaN(num) && num >= 0 && num <= 2047) {
+            binaryInput.value = num.toString(2);
+          } else {
+            binaryInput.value = 'Ошибка (0–2047)';
+          }
+        });
+
+        binaryInput.addEventListener('input', function(e) {
+          let val = e.target.value.replace(/[^01]/g, '');
+          if (val.length > 11) val = val.slice(0, 11);
+          e.target.value = val;
+          if (val === '') { decimalInput.value = ''; return; }
+          const num = parseInt(val, 2);
+          if (!isNaN(num)) decimalInput.value = num;
+        });
+      }
+
+      renderTests();
+      renderQuiz();
+      renderChecklist();
+      goToSlide(1);
+    });
+
+    // ============================================================
+    // ЧЕК-ЛИСТ
+    // ============================================================
+    function renderChecklist() {
+      const container = document.getElementById('checklistContainer');
+      if (!container) return;
+      let html = '';
+      checklistItems.forEach(item => {
+        const checked = localStorage.getItem(CHECKLIST_STORAGE + item.id) === '1';
+        html += '<label class="checklist-item ' + (checked ? 'done' : '') + '" id="cl-item-' + item.id + '">' +
+          '<input type="checkbox" ' + (checked ? 'checked' : '') + ' onchange="toggleChecklist(\'' + item.id + '\')">' +
+          '<span class="item-text">' + item.text + '</span>' +
+          '</label>';
+      });
+      container.innerHTML = html;
+      updateChecklistProgress();
+    }
+
+    function toggleChecklist(itemId) {
+      const key = CHECKLIST_STORAGE + itemId;
+      const isChecked = localStorage.getItem(key) === '1';
+      if (isChecked) {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, '1');
+      }
+      const itemEl = document.getElementById('cl-item-' + itemId);
+      if (itemEl) itemEl.classList.toggle('done', !isChecked);
+      updateChecklistProgress();
+    }
+
+    function updateChecklistProgress() {
+      const bar = document.getElementById('checklistBar');
+      const text = document.getElementById('checklistText');
+      if (!bar || !text) return;
+      let done = 0;
+      checklistItems.forEach(item => {
+        if (localStorage.getItem(CHECKLIST_STORAGE + item.id) === '1') done++;
+      });
+      const percent = Math.round((done / checklistItems.length) * 100);
+      bar.style.width = percent + '%';
+      text.textContent = done + ' из ' + checklistItems.length + ' · ' + percent + '%';
+    }
+
+    function resetChecklist() {
+      checklistItems.forEach(item => {
+        localStorage.removeItem(CHECKLIST_STORAGE + item.id);
+      });
+      renderChecklist();
+    }
+
+    // ============================================================
+    // ДАННЫЕ ТЕСТОВ
+    // ============================================================
+    const variant1Tasks = [
+      { id: 'v1t1', type: 'train', question: 'Переведите в десятичную систему счисления: 1111₂', answer: 15, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '1111₂ = 1×2³ + 1×2² + 1×2¹ + 1×2⁰ = 8 + 4 + 2 + 1 = 15₁₀', fact: null },
+      { id: 'v1t2', type: 'train', question: 'Переведите в десятичную систему счисления: 1000111₂', answer: 71, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '1000111₂ = 1×2⁶ + 0×2⁵ + 0×2⁴ + 0×2³ + 1×2² + 1×2¹ + 1×2⁰ = 64 + 0 + 0 + 0 + 4 + 2 + 1 = 71₁₀', fact: null },
+      { id: 'v1t3', type: 'train', question: 'Переведите в двоичную систему счисления: 17₁₀', answer: '10001', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '17 ÷ 2 = 8 (ост. 1)<br>8 ÷ 2 = 4 (ост. 0)<br>4 ÷ 2 = 2 (ост. 0)<br>2 ÷ 2 = 1 (ост. 0)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 10001₂', fact: null },
+      { id: 'v1t4', type: 'train', question: 'Переведите в двоичную систему счисления: 67₁₀', answer: '1000011', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '67 ÷ 2 = 33 (ост. 1)<br>33 ÷ 2 = 16 (ост. 1)<br>16 ÷ 2 = 8 (ост. 0)<br>8 ÷ 2 = 4 (ост. 0)<br>4 ÷ 2 = 2 (ост. 0)<br>2 ÷ 2 = 1 (ост. 0)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 1000011₂', fact: null },
+      { id: 'v1h1', type: 'hist', question: 'Переведите в десятичную систему счисления: 11111001010₂', answer: 1994, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '11111001010₂ = 1×2¹⁰ + 1×2⁹ + 1×2⁸ + 1×2⁷ + 1×2⁶ + 0×2⁵ + 0×2⁴ + 1×2³ + 0×2² + 1×2¹ + 0×2⁰<br>= 1024 + 512 + 256 + 128 + 64 + 0 + 0 + 8 + 0 + 2 + 0 = 1994₁₀', fact: 'Полученное число 1994 — год принятия Конституции Республики Калмыкия.' },
+      { id: 'v1h2', type: 'hist', question: 'Переведите в десятичную систему счисления: 1001₂', answer: 9, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '1001₂ = 1×2³ + 0×2² + 0×2¹ + 1×2⁰ = 8 + 0 + 0 + 1 = 9₁₀', fact: 'Полученное число 9 — во 2-й половине XIX века Калмыцкая степь делилась на 9 улусов.' },
+      { id: 'v1h3', type: 'hist', question: 'Переведите в двоичную систему счисления: 42₁₀', answer: '101010', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '42 ÷ 2 = 21 (ост. 0)<br>21 ÷ 2 = 10 (ост. 1)<br>10 ÷ 2 = 5 (ост. 0)<br>5 ÷ 2 = 2 (ост. 1)<br>2 ÷ 2 = 1 (ост. 0)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 101010₂', fact: 'Полученное число 42 — среди 89 субъектов РФ республика занимает 42 место по площади.' },
+      { id: 'v1h4', type: 'hist', question: 'Переведите в двоичную систему счисления: 5₁₀', answer: '101', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '5 ÷ 2 = 2 (ост. 1)<br>2 ÷ 2 = 1 (ост. 0)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 101₂', fact: 'Полученное число 5 — всего республика имеет границы с 5 другими субъектами РФ.' }
+    ];
+
+    const variant2Tasks = [
+      { id: 'v2t1', type: 'train', question: 'Переведите в десятичную систему счисления: 10110₂', answer: 22, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '10110₂ = 1×2⁴ + 0×2³ + 1×2² + 1×2¹ + 0×2⁰ = 16 + 0 + 4 + 2 + 0 = 22₁₀', fact: null },
+      { id: 'v2t2', type: 'train', question: 'Переведите в десятичную систему счисления: 1110₂', answer: 14, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '1110₂ = 1×2³ + 1×2² + 1×2¹ + 0×2⁰ = 8 + 4 + 2 + 0 = 14₁₀', fact: null },
+      { id: 'v2t3', type: 'train', question: 'Переведите в двоичную систему счисления: 53₁₀', answer: '110101', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '53 ÷ 2 = 26 (ост. 1)<br>26 ÷ 2 = 13 (ост. 0)<br>13 ÷ 2 = 6 (ост. 1)<br>6 ÷ 2 = 3 (ост. 0)<br>3 ÷ 2 = 1 (ост. 1)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 110101₂', fact: null },
+      { id: 'v2t4', type: 'train', question: 'Переведите в двоичную систему счисления: 12₁₀', answer: '1100', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '12 ÷ 2 = 6 (ост. 0)<br>6 ÷ 2 = 3 (ост. 0)<br>3 ÷ 2 = 1 (ост. 1)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 1100₂', fact: null },
+      { id: 'v2h1', type: 'hist', question: 'Переведите в десятичную систему счисления: 10100001₂', answer: 161, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '10100001₂ = 1×2⁷ + 0×2⁶ + 1×2⁵ + 0×2⁴ + 0×2³ + 0×2² + 0×2¹ + 1×2⁰<br>= 128 + 0 + 32 + 0 + 0 + 0 + 0 + 1 = 161₁₀', fact: 'Полученное число 161 — в 2026 году Элисте исполнился 161 год.' },
+      { id: 'v2h2', type: 'hist', question: 'Переведите в десятичную систему счисления: 11111001000₂', answer: 1992, hint: 'Воспользуйтесь алгоритмом перевода из двоичной в десятичную: разряды справа налево, степени двойки.', solution: '11111001000₂ = 1×2¹⁰ + 1×2⁹ + 1×2⁸ + 1×2⁷ + 1×2⁶ + 0×2⁵ + 0×2⁴ + 1×2³ + 0×2² + 0×2¹ + 0×2⁰<br>= 1024 + 512 + 256 + 128 + 64 + 0 + 0 + 8 + 0 + 0 + 0 = 1992₁₀', fact: 'Полученное число 1992 — в феврале 1992 года республика получила название — Республика Калмыкия — Хальмг Тангч.' },
+      { id: 'v2h3', type: 'hist', question: 'Переведите в двоичную систему счисления: 13₁₀', answer: '1101', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '13 ÷ 2 = 6 (ост. 1)<br>6 ÷ 2 = 3 (ост. 0)<br>3 ÷ 2 = 1 (ост. 1)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 1101₂', fact: 'Полученное число 13 — количество районов Калмыкии.' },
+      { id: 'v2h4', type: 'hist', question: 'Переведите в двоичную систему счисления: 265₁₀', answer: '100001001', hint: 'Воспользуйтесь методом деления на 2: делите, записывайте остатки, читайте снизу вверх.', solution: '265 ÷ 2 = 132 (ост. 1)<br>132 ÷ 2 = 66 (ост. 0)<br>66 ÷ 2 = 33 (ост. 0)<br>33 ÷ 2 = 16 (ост. 1)<br>16 ÷ 2 = 8 (ост. 0)<br>8 ÷ 2 = 4 (ост. 0)<br>4 ÷ 2 = 2 (ост. 0)<br>2 ÷ 2 = 1 (ост. 0)<br>1 ÷ 2 = 0 (ост. 1)<br>Читаем остатки снизу вверх: 100001001₂', fact: 'Полученное число 265 — количество населённых пунктов в Калмыкии.' }
+    ];
+
+    // ============================================================
+    // ОТРИСОВКА ТЕСТОВ
+    // ============================================================
+    function renderTests() {
+      try {
+        const container = document.getElementById('testContainer');
+        if (!container) return;
+        const tasks = currentVariant === 1 ? variant1Tasks : variant2Tasks;
+        let html = '';
+        tasks.forEach((task, index) => {
+          const saved = testResults['variant' + currentVariant][task.id] || { solved: false, failed: false, userAnswer: '', attempts: 0 };
+          const isCorrect = saved.solved;
+          const isFailed = saved.failed;
+          const attemptsUsed = saved.attempts || 0;
+          const remaining = MAX_ATTEMPTS - attemptsUsed;
+          const isLocked = isCorrect || isFailed;
+
+          const badge = task.type === 'hist'
+            ? '<span class="task-badge badge-hist">историческое</span>'
+            : '<span class="task-badge badge-train">тренировочное</span>';
+
+          let attemptsIndicator = '';
+          if (!isLocked && attemptsUsed > 0) {
+            attemptsIndicator = '<span class="attempts-indicator">Осталось попыток: ' + remaining + '</span>';
+          }
+
+          let explanationHtml = '';
+          if (task.solution || task.fact) {
+            const showExpl = isCorrect || isFailed;
+            const explClass = isCorrect ? 'explanation' : (isFailed ? 'explanation failed-expl' : 'explanation');
+            const explTitle = isCorrect ? '✅ Решение' : '❌ Правильное решение';
+            explanationHtml = '<div class="' + explClass + '" id="expl-' + task.id + '" style="display: ' + (showExpl ? 'block' : 'none') + ';">' +
+              '<h4>' + explTitle + '</h4>' +
+              '<div class="solution">' + task.solution + '</div>' +
+              (task.fact ? '<div class="fact"><strong>📜 Исторический факт:</strong> ' + task.fact + '</div>' : '') +
+              '</div>';
+          }
+
+          let itemClass = 'test-item';
+          if (isCorrect) itemClass += ' correct';
+          if (isFailed) itemClass += ' failed';
+
+          html += '<div class="' + itemClass + '" id="item-' + task.id + '">' +
+            '<div class="test-question">' +
+            (index + 1) + '. ' + task.question + ' ' + badge +
+            '<span class="checkmark" id="check-' + task.id + '" style="display: ' + (isCorrect ? 'inline-block' : 'none') + ';">✔</span>' +
+            attemptsIndicator +
+            '</div>' +
+            '<div style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; align-items: center;">' +
+            '<input type="text" class="test-input" id="input-' + task.id + '" placeholder="Ваш ответ" value="' + (saved.userAnswer || '') + '" ' + (isLocked ? 'disabled' : '') + '>' +
+            '<button class="btn-small btn" onclick="checkTestAnswer(\'' + task.id + '\')" ' + (isLocked ? 'disabled' : '') + '>Проверить</button>' +
+            '</div>' +
+            '<span class="error-hint" id="hint-' + task.id + '"></span>' +
+            explanationHtml +
+            '</div>';
+        });
+        container.innerHTML = html;
+      } catch (e) {
+        console.error('renderTests error:', e);
+      }
+    }
+
+    // ============================================================
+    // ПРОВЕРКА ОТВЕТА
+    // ============================================================
+    function checkTestAnswer(taskId) {
+      try {
+        const tasks = currentVariant === 1 ? variant1Tasks : variant2Tasks;
+        const task = tasks.find(t => t.id === taskId);
+        if (!task) return;
+
+        const input = document.getElementById('input-' + taskId);
+        const hintSpan = document.getElementById('hint-' + taskId);
+        const itemDiv = document.getElementById('item-' + taskId);
+        const explDiv = document.getElementById('expl-' + taskId);
+        const checkSpan = document.getElementById('check-' + taskId);
+        if (!input || !hintSpan || !itemDiv) return;
+
+        const userAnswer = input.value.trim();
+        if (userAnswer === '') {
+          hintSpan.textContent = 'Введите ответ.';
+          return;
+        }
+
+        const key = 'variant' + currentVariant;
+        const prev = testResults[key][taskId] || { solved: false, failed: false, userAnswer: '', attempts: 0 };
+        if (prev.solved || prev.failed) return;
+
+        const attemptsUsed = prev.attempts || 0;
+        const newAttempts = attemptsUsed + 1;
+
+        let isCorrect = false;
+        if (typeof task.answer === 'number') {
+          const parsed = parseInt(userAnswer, 10);
+          if (!isNaN(parsed) && parsed === task.answer) isCorrect = true;
+        } else {
+          if (userAnswer === task.answer) isCorrect = true;
+        }
+
+        if (isCorrect) {
+          testResults[key][taskId] = { solved: true, failed: false, userAnswer: userAnswer, attempts: newAttempts };
+          itemDiv.classList.add('correct');
+          input.disabled = true;
+          if (checkSpan) checkSpan.style.display = 'inline-block';
+          hintSpan.textContent = '';
+          if (explDiv) {
+            explDiv.style.display = 'block';
+            explDiv.classList.remove('failed-expl');
+            const h4 = explDiv.querySelector('h4');
+            if (h4) h4.textContent = '✅ Решение';
+          }
+          const btn = itemDiv.querySelector('button');
+          if (btn) btn.disabled = true;
+          const ind = itemDiv.querySelector('.attempts-indicator');
+          if (ind) ind.remove();
+        } else {
+          if (newAttempts >= MAX_ATTEMPTS) {
+            testResults[key][taskId] = { solved: false, failed: true, userAnswer: userAnswer, attempts: newAttempts };
+            itemDiv.classList.add('failed');
+            input.disabled = true;
+            const btn = itemDiv.querySelector('button');
+            if (btn) btn.disabled = true;
+            if (checkSpan) checkSpan.style.display = 'none';
+            hintSpan.textContent = '';
+            if (explDiv) {
+              explDiv.style.display = 'block';
+              explDiv.classList.add('failed-expl');
+              const h4 = explDiv.querySelector('h4');
+              if (h4) h4.textContent = '❌ Правильное решение';
+            }
+            const ind = itemDiv.querySelector('.attempts-indicator');
+            if (ind) ind.remove();
+          } else {
+            testResults[key][taskId] = { solved: false, failed: false, userAnswer: userAnswer, attempts: newAttempts };
+            const remaining = MAX_ATTEMPTS - newAttempts;
+            hintSpan.textContent = '❌ Неверно. ' + task.hint + ' Осталось попыток: ' + remaining;
+            updateAttemptsIndicator(taskId, newAttempts);
+          }
+        }
+      } catch (e) {
+        console.error('checkTestAnswer error:', e);
+      }
+    }
+
+    function updateAttemptsIndicator(taskId, attemptsUsed) {
+      try {
+        const itemDiv = document.getElementById('item-' + taskId);
+        if (!itemDiv) return;
+        const questionDiv = itemDiv.querySelector('.test-question');
+        if (!questionDiv) return;
+        const old = questionDiv.querySelector('.attempts-indicator');
+        if (old) old.remove();
+        const remaining = MAX_ATTEMPTS - attemptsUsed;
+        if (remaining > 0 && remaining < MAX_ATTEMPTS) {
+          const span = document.createElement('span');
+          span.className = 'attempts-indicator';
+          span.textContent = 'Осталось попыток: ' + remaining;
+          questionDiv.appendChild(span);
+        }
+      } catch (e) {
+        console.error('updateAttemptsIndicator error:', e);
+      }
+    }
+
+    function setVariant(variant) {
+      try {
+        currentVariant = variant;
+        const v1 = document.getElementById('variant1Btn');
+        const v2 = document.getElementById('variant2Btn');
+        if (v1) v1.classList.toggle('active', variant === 1);
+        if (v2) v2.classList.toggle('active', variant === 2);
+        renderTests();
+        quizChecked = false;
+        renderQuiz();
+      } catch (e) {
+        console.error('setVariant error:', e);
+      }
+    }
+
+    // ============================================================
+    // ТЕСТ ПО ФАКТАМ
+    // ============================================================
+    const quizVariant1 = [
+      { id: 'q1_1', question: 'Сколько улусов было во 2-й половине XIX века в Калмыкии?', options: ['8', '7', 'Не было улусов', '9'], correct: 3, explanation: 'Правильный ответ: 9. Во 2-й половине XIX века Калмыцкая степь делилась на 9 улусов (1001₂ = 9₁₀).' },
+      { id: 'q1_2', question: 'Среди субъектов РФ Калмыкия занимает ... место.', options: ['1', '52', '42', '5'], correct: 2, explanation: 'Правильный ответ: 42. Среди 89 субъектов РФ республика занимает 42 место по площади (42₁₀ = 101010₂).' },
+      { id: 'q1_3', question: 'Конституция Калмыкии была принята в ... году.', options: ['1865', '2001', '1771', '1994'], correct: 3, explanation: 'Правильный ответ: 1994. В 1994 году была принята Конституция Республики Калмыкия (11111001010₂ = 1994₁₀).' },
+      { id: 'q1_4', question: 'Со сколькими субъектами РФ граничит республика?', options: ['Ни с кем не граничит', '2', '5', '10'], correct: 2, explanation: 'Правильный ответ: 5. Всего республика имеет границы с 5 другими субъектами РФ (5₁₀ = 101₂).' }
+    ];
+
+    const quizVariant2 = [
+      { id: 'q2_1', question: 'Сколько районов в Калмыкии?', options: ['13', '14', '1', '9'], correct: 0, explanation: 'Правильный ответ: 13. В Калмыкии 13 районов (13₁₀ = 1101₂).' },
+      { id: 'q2_2', question: 'В каком году республика получила название — Республика Калмыкия — Хальмг Тангч?', options: ['1992', '1952', '1442', '995'], correct: 0, explanation: 'Правильный ответ: 1992. В феврале 1992 года республика получила название — Республика Калмыкия — Хальмг Тангч (11111001000₂ = 1992₁₀).' },
+      { id: 'q2_3', question: 'В 2026 году Элисте исполнился ... год.', options: ['161', '41', '566', '121'], correct: 0, explanation: 'Правильный ответ: 161. В 2026 году Элисте исполнился 161 год (10100001₂ = 161₁₀).' },
+      { id: 'q2_4', question: 'Сколько населённых пунктов в Калмыкии?', options: ['0', '111', '265', '262'], correct: 2, explanation: 'Правильный ответ: 265. В Калмыкии 265 населённых пунктов (265₁₀ = 100001001₂).' }
+    ];
+
+    function getCurrentQuiz() {
+      return currentVariant === 1 ? quizVariant1 : quizVariant2;
+    }
+
+    function renderQuiz() {
+      try {
+        const container = document.getElementById('quizContainer');
+        if (!container) return;
+        const quizQuestions = getCurrentQuiz();
+        let html = '';
+        quizQuestions.forEach((q, idx) => {
+          const saved = quizAnswers[q.id];
+          const isChecked = quizChecked;
+          const isCorrect = saved === q.correct;
+          let cls = 'quiz-question';
+          if (isChecked && saved !== undefined) {
+            cls += isCorrect ? ' correct-answer' : ' wrong-answer';
+          }
+          let optionsHtml = '';
+          q.options.forEach((opt, optIdx) => {
+            const selected = saved === optIdx ? 'selected' : '';
+            const disabled = isChecked ? 'disabled-option' : '';
+            const checked = saved === optIdx ? 'checked' : '';
+            const disabledAttr = isChecked ? 'disabled' : '';
+            optionsHtml += '<label class="quiz-option ' + selected + ' ' + disabled + '" id="label-' + q.id + '-' + optIdx + '">' +
+              '<input type="radio" name="quiz-' + q.id + '" value="' + optIdx + '" ' + checked + ' ' + disabledAttr +
+              ' onchange="saveQuizAnswer(\'' + q.id + '\', ' + optIdx + ')">' +
+              opt +
+              '</label>';
+          });
+
+          let explHtml = '';
+          if (isChecked && saved !== undefined) {
+            explHtml = '<div class="quiz-explanation show ' + (isCorrect ? 'right' : 'wrong') + '" id="qexpl-' + q.id + '">' +
+              (isCorrect ? '✅ ' + q.explanation : '❌ Неверно. ' + q.explanation) +
+              '</div>';
+          } else {
+            explHtml = '<div class="quiz-explanation" id="qexpl-' + q.id + '"></div>';
+          }
+
+          html += '<div class="' + cls + '" id="quizq-' + q.id + '">' +
+            '<p style="font-weight: 600; margin-bottom: 0.8rem;">' + (idx + 1) + '. ' + q.question + '</p>' +
+            optionsHtml +
+            explHtml +
+            '</div>';
+        });
+        container.innerHTML = html;
+      } catch (e) {
+        console.error('renderQuiz error:', e);
+      }
+    }
+
+    function saveQuizAnswer(questionId, optionIndex) {
+      try {
+        if (quizChecked) return;
+        quizAnswers[questionId] = optionIndex;
+        getCurrentQuiz().forEach(q => {
+          if (q.id === questionId) {
+            q.options.forEach((_, idx) => {
+              const label = document.getElementById('label-' + q.id + '-' + idx);
+              if (label) label.classList.toggle('selected', idx === optionIndex);
+            });
+          }
+        });
+      } catch (e) {
+        console.error('saveQuizAnswer error:', e);
+      }
+    }
+
+    // ============================================================
+    // КИМы
+    // ============================================================
+    function checkKimAnswers() {
+      for (let i = 1; i <= 3; i++) {
+        const keyEl = document.getElementById('kim_key' + i);
+        if (keyEl) keyEl.classList.add('show');
+      }
+    }
+
+    // ============================================================
+    // ПРАКТИЧЕСКИЕ КЕЙСЫ
+    // ============================================================
+    const caseAnswers = {
+      1: {
+        correct: 'разряды справа налево, степени двойки, сложение',
+        validate: function(raw) {
+          const lower = raw.toLowerCase().replace(/\s+/g, ' ');
+          const step1 = /разряд|справа налево|нулев/i.test(lower);
+          const step2 = /степен|умнож|2 в степени/i.test(lower);
+          const step3 = /слож|сумм|плюс/i.test(lower);
+          return step1 && step2 && step3;
+        }
+      },
+      2: {
+        correct: '11001',
+        normalizer: v => v.replace(/\s|₂|2/g, '').trim()
+      }
+    };
+
+    function checkCase(caseId) {
+      const input = document.getElementById('case' + caseId + '_input');
+      const feedback = document.getElementById('case' + caseId + '_feedback');
+      if (!input || !feedback) return;
+
+      const raw = input.value.trim();
+      if (raw === '') {
+        feedback.className = 'case-feedback err show';
+        feedback.textContent = 'Введите ответ.';
+        return;
+      }
+
+      let isCorrect = false;
+      if (caseId === 1) {
+        isCorrect = caseAnswers[1].validate(raw);
+      } else {
+        const userVal = caseAnswers[2].normalizer(raw);
+        const correctVal = caseAnswers[2].normalizer(caseAnswers[2].correct);
+        isCorrect = (userVal === correctVal);
+      }
+
+      if (isCorrect) {
+        feedback.className = 'case-feedback ok show';
+        feedback.textContent = (caseId === 1)
+          ? '✅ Верно! Все три шага алгоритма названы.'
+          : '✅ Верно! Ошибка найдена и исправлена.';
+        input.disabled = true;
+      } else {
+        feedback.className = 'case-feedback err show';
+        feedback.textContent = (caseId === 1)
+          ? '❌ Неверно. Вспомните три шага алгоритма: разряды, степени, сложение.'
+          : '❌ Неверно. Попробуйте ещё раз или откройте правильный ответ.';
+      }
+    }
+
+    function toggleCase(caseId) {
+      const el = document.getElementById(caseId);
+      if (el) el.classList.toggle('show');
+    }
+
+    // ============================================================
+    // РЕЗУЛЬТАТЫ
+    // ============================================================
+    function updateResultsScreen() {
+      try {
+        const key = 'variant' + currentVariant;
+        const results = testResults[key] || {};
+        const solvedCount = Object.values(results).filter(r => r.solved).length;
+        const failedCount = Object.values(results).filter(r => r.failed).length;
+
+        const quizQuestions = getCurrentQuiz();
+        const totalTasks = 8 + quizQuestions.length;
+
+        let quizCorrect = 0;
+        let quizAnswered = 0;
+        quizQuestions.forEach(q => {
+          if (quizAnswers[q.id] !== undefined) {
+            quizAnswered++;
+            if (quizAnswers[q.id] === q.correct) quizCorrect++;
+          }
+        });
+
+        const correctTasks = solvedCount + quizCorrect;
+        const percent = totalTasks > 0 ? Math.round((correctTasks / totalTasks) * 100) : 0;
+
+        const percentEl = document.getElementById('resultPercent');
+        const msgEl = document.getElementById('resultMessage');
+        const detailsEl = document.getElementById('resultDetails');
+
+        if (percentEl) percentEl.textContent = percent + '%';
+
+        let message = '';
+        if (percent >= 80) message = '🏆 Отличный цифровой архивариус! Ты отлично знаешь историю Калмыкии и системы счисления!';
+        else if (percent >= 50) message = '📚 Хороший результат! Но есть над чем поработать. Попробуй ещё раз!';
+        else message = '💪 Нужно ещё потренироваться в переводе чисел. У тебя всё получится!';
+
+        if (msgEl) msgEl.textContent = message;
+
+        if (detailsEl) {
+          detailsEl.innerHTML = '<p>Вариант ' + currentVariant + ':</p>' +
+            '<p>• Решено заданий по переводу: <strong>' + solvedCount + ' из 8</strong></p>' +
+            '<p>• Не удалось решить: <strong>' + failedCount + '</strong></p>' +
+            '<p>• Правильных ответов в тесте по фактам: <strong>' + quizCorrect + ' из ' + quizQuestions.length + '</strong> (отвечено: ' + quizAnswered + ')</p>' +
+            '<p>• Общий результат: <strong>' + correctTasks + ' из ' + totalTasks + '</strong></p>';
+        }
+      } catch (e) {
+        console.error('updateResultsScreen error:', e);
+        const percentEl = document.getElementById('resultPercent');
+        if (percentEl) percentEl.textContent = 'Ошибка';
+        const detailsEl = document.getElementById('resultDetails');
+        if (detailsEl) detailsEl.textContent = 'Произошла ошибка при подсчёте результатов. Проверьте консоль.';
+      }
+    }
+
+    function checkQuizAndGoToResults() {
+      try {
+        const quizQuestions = getCurrentQuiz();
+        const unanswered = quizQuestions.filter(q => quizAnswers[q.id] === undefined);
+        if (unanswered.length > 0) {
+          alert('Пожалуйста, ответьте на все вопросы теста по фактам!');
+          return;
+        }
+        quizChecked = true;
+        renderQuiz();
+        setTimeout(() => goToSlide(10), 800);
+      } catch (e) {
+        console.error('checkQuizAndGoToResults error:', e);
+      }
+    }
+
+    // ============================================================
+    // ПЕРЕЗАПУСК
+    // ============================================================
+    function restartAll() {
+      try {
+        testResults = { variant1: {}, variant2: {} };
+        quizAnswers = {};
+        quizChecked = false;
+        const dec = document.getElementById('decimalInput');
+        const bin = document.getElementById('binaryInput');
+        if (dec) dec.value = '';
+        if (bin) bin.value = '';
+        currentVariant = 1;
+        const v1 = document.getElementById('variant1Btn');
+        const v2 = document.getElementById('variant2Btn');
+        if (v1) v1.classList.add('active');
+        if (v2) v2.classList.remove('active');
+
+        // Сброс КИМов
+        document.querySelectorAll('input[name^="kim_q"]').forEach(el => el.checked = false);
+        const open3 = document.getElementById('kim_open3');
+        if (open3) open3.value = '';
+        for (let i = 1; i <= 3; i++) {
+          const keyEl = document.getElementById('kim_key' + i);
+          if (keyEl) keyEl.classList.remove('show');
+        }
+
+        // Сброс практических кейсов
+        [1, 2].forEach(id => {
+          const inp = document.getElementById('case' + id + '_input');
+          const fb = document.getElementById('case' + id + '_feedback');
+          const ans = document.getElementById('case' + id);
+          if (inp) { inp.value = ''; inp.disabled = false; }
+          if (fb) { fb.className = 'case-feedback'; fb.textContent = ''; }
+          if (ans) ans.classList.remove('show');
+        });
+
+        // Сброс чек-листа
+        resetChecklist();
+
+        renderTests();
+        renderQuiz();
+        goToSlide(1);
+      } catch (e) {
+        console.error('restartAll error:', e);
+      }
+    }
+  </script>
+</body>
+</html>
